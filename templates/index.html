@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+
+{% block page_content %}
+
+<div class="container">
+    <h1>{{ app_title }}</h1>
+    <p>Use this app to test the pyduke-energy Python library, which is primarily used for the Home Assistant Duke Energy Gateway integration.</p>
+    <p>Your credentials are only used locally on this page to make the API request.</p>
+    <p>This app source can be found at <a target="_blank" href="https://github.com/mjmeli/pyduke-energy-test-app">https://github.com/mjmeli/pyduke-energy-test-app</a></p>
+
+    <form id="inputForm">
+        <div class="mb-3">
+            <label for="inputEmail" class="form-label">Email Address</label>
+            <input type="email" class="form-control" id="inputEmail">
+        </div>
+        <div class="mb-3">
+            <label for="inputPassword" class="form-label">Password</label>
+            <input type="password" class="form-control" id="inputPassword">
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+
+    <br/>
+
+    <pre id="outputData"></pre>
+</div>
+
+{% endblock %}
+
+{% block scripts %}
+
+<script>
+    $("#inputForm").submit(function(event) {
+        event.preventDefault();
+
+        var outputDataElement = $("#outputData");
+
+        var email = $("#inputEmail").val();
+        var password = $("#inputPassword").val();
+
+        if (!email || !password) {
+            outputDataElement.text("ERROR: must enter email/password");
+            return;
+        }
+        
+        outputDataElement.text("Loading...");
+
+        $.get("/data", { 
+            "email": email, 
+            "password": password,
+            "timezone": Intl.DateTimeFormat().resolvedOptions().timeZone
+        })
+            .done(function (resp) {
+                outputDataElement.text(resp.data);
+            })
+            .fail(function (xhr, statusText, errorThrown ) {
+                outputDataElement.text("ERROR: " + errorThrown);
+            });
+    })
+</script>
+{% endblock %}

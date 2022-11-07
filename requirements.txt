@@ -1,0 +1,5 @@
+aiohttp==3.8.3
+fastapi==0.86.0
+jsonpickle==2.2.0
+pyduke_energy==1.0.2
+pytz==2022.6
