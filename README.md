@@ -8,6 +8,8 @@ It is still a work-in-progress and may need to be adapted to provide more useful
 
 ## Development
 
-This repo contains a devcontainer that will setup dependencies for you. After that, you can run `run_dev.sh` or the following command to start the web server on port 8000:
+This repo contains a devcontainer that will setup dependencies for you. If you want to install dependencies manually or use a virtualenv, you may do so using the `requirements.txt` file.
+
+Once dependencies are setup, you can run `run_dev.sh` or the following command to start the web server on port 8000:
 
     uvicorn app.main:app --reload
