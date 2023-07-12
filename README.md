@@ -1,3 +1,7 @@
+## IMPORTANT - DEPRECATED
+
+Duke Energy shut down the Gateway pilot program at the end of June 2023. This integration has stopped functioning and is deprecated.
+
 # pyduke-energy Test App
 
 This is a quick web app designed to quickly get raw data from the Duke Energy API for debugging purposes.
